@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "test_e2e": "cross-env NODE_ENV=test && jest --maxWorkers=1 e2e_test",
     "test": "cross-env NODE_ENV=test && jest",
     "start": "node index",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
@@ -16,6 +17,9 @@
     "hooks": {
       "pre-commit": "npm run lint:fix && npm run format:fix "
     }
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["e2e_test"]
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [

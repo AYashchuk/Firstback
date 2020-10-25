@@ -5,17 +5,20 @@ const Project = require('../src/models/projectModel');
 const connection = require('../src/lib/dbConnection');
 const axios = require('axios');
 const faker = require('faker');
-const PORT = 5006;
 
-beforeAll(async () => {
+const PORT = process.env.APP_PORT_TEST;
+
+describe('create Project', () => {
+  let _toDeleteProj;
+  let _server;
+
+  beforeAll(async () => {
     // before all test run server
     await new Promise(resolve => {
       _server = server.listen(PORT, resolve);
     });
   });
 
-describe('create Project', () => {
-  let _toDeleteProj;
   it('should create new project', async ()=>{
      const createUser = {
         _id: new mongoose.Types.ObjectId(),

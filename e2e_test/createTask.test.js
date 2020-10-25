@@ -6,17 +6,19 @@ const connection = require('../src/lib/dbConnection');
 const axios = require('axios');
 const faker = require('faker');
 
-const PORT = 5001;
 
-beforeAll(async () => {
+const PORT = process.env.APP_PORT_TEST;
+
+describe('create Task', () => {
+  let _toDeleteTask;
+  let _server;
+
+  beforeAll(async () => {
     // before all test run server
     await new Promise(resolve => {
       _server = server.listen(PORT, resolve);
     });
   });
-
-describe('create Task', () => {
-  let _toDeleteTask;
 
   it('should create new task', async ()=>{
     const createProject = {
@@ -39,7 +41,7 @@ describe('create Task', () => {
 
   const checkTask = await Task.findOne({ _id: resTask.data._id });
   expect(checkTask).toBeDefined();
-  
+
   _toDeleteTask = checkTask;
 
   expect(createTask.content).toEqual(checkTask.content);
