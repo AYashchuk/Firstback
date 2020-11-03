@@ -6,9 +6,9 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test && jest --maxWorkers=1",
     "start": "nodemon index",
-    "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "lint:fix": "eslint --fix \"src/**/*.{js,jsx}\"",
-    "format:fix": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.js\"",
+    "lint:fix": "eslint --fix \"src/**/*.js\"",
+    "format:fix": "prettier --write \"src/**/*.js\"",
     "format:staged": "pretty-quick --staged",
     "precommit": "npm run format:staged && npm run format:fix"
   },
